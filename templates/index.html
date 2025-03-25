@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home - BlogApp{% endblock %}
+{% block content %}
+<h2>Latest Blogs</h2>
+<div id="blogs">
+  {% for blog in blogs %}
+    <div class="card my-3">
+      <div class="card-header">
+        <strong>{{ blog.title }}</strong> by {{ blog.author }}
+      </div>
+      <div class="card-body">
+        <p>{{ blog.content }}</p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<script>
+  const socket = io();
+  socket.on("new_blog", (blog) => {
+    const div = document.createElement("div");
+    div.className = "card my-3";
+    div.innerHTML = 
+      <div class="card-header">
+        <strong>${blog.title}</strong> by ${blog.author}
+      </div>
+      <div class="card-body">
+        <p>${blog.content}</p>
+      </div>;
+    document.getElementById("blogs").prepend(div);
+  });
+</script>
+{% endblock %}

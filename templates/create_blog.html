@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}New Post - BlogApp{% endblock %}
+
+{% block content %}
+<h2>Create a New Blog</h2>
+<form id="blogForm" class="col-md-8">
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input type="text" name="title" id="title" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Content</label>
+    <textarea name="content" id="content" rows="5" class="form-control" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Post Blog</button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const blogForm = document.getElementById("blogForm");
+
+      blogForm.addEventListener("submit", async (event) => {
+          event.preventDefault();  // Prevent default form submission
+
+          try {
+              const formData = new FormData(blogForm);
+              const response = await fetch("/create", {
+                  method: "POST",
+                  body: formData
+              });
+
+              if (!response.ok) throw new Error("Failed to create blog");
+
+              const data = await response.json();
+              showToast(data.message || "Blog post created successfully");
+
+              // Reset form fields after successful submission
+              blogForm.reset();
+          } catch (error) {
+              console.error("Error:", error);
+              showToast(error.message || "Error creating blog", true);
+          }
+      });
+  });
+</script>
+
+{% endblock %}

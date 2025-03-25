@@ -1,0 +1,40 @@
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+    color: white;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+  }
+  
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out forwards;
+  }
+  
+  .fade-in:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+  
+  .fade-in:nth-child(3) {
+    animation-delay: 1s;
+  }
+  
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+  }
+  
+  .btn-custom {
+    background-color: #00d8ff;
+    color: #000;
+    border: none;
+    font-weight: bold;
+  }
+  
+  .btn-custom:hover {
+    background-color: #00b8e6;
+  }
+  

@@ -1,0 +1,26 @@
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+    <a class="navbar-brand" href="{{ '/home' if user else '/' }}">BlogApp</a>
+    
+    <!-- Toggle Button for Mobile View -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible Navbar Links -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            {% if user %}
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/create">New Post</a></li>
+                <li class="nav-item"><a class="nav-link" href="/manage">Manage Post</a></li>
+                <li class="nav-item"><a class="nav-link text-danger" href="/logout">Logout</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-primary text-white px-3" href="/signup">Signup</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
